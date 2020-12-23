@@ -40,6 +40,7 @@ public class RemoteCalculater implements Calculator {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         if (response instanceof Integer) {
             return (Integer) response;
         } else {

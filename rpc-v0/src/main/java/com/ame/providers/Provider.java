@@ -1,50 +1,34 @@
 package com.ame.providers;
 
-import com.ame.services.impl.CalculatorImpl;
-import com.ame.request.Request;
-import com.ame.services.Calculator;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
- * FileName: Provider
+ * FileName: ProviderApp
  * Author:   AmeGong
- * Date:     2020/12/23 16:07
+ * Date:     2020/12/23 19:33
  */
 public class Provider {
-    private int PORT = 9090;
-    private Calculator calculator = new CalculatorImpl();
+    private final ExecutorService pool;
+    private final Listener listener;
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        new Provider().run();
+    public Provider(int port, int poolSize) throws IOException {
+        pool = Executors.newFixedThreadPool(10);
+        listener = new Listener(9090);
     }
 
-    private void run() throws IOException, ClassNotFoundException {
-        try (ServerSocket listener = new ServerSocket(PORT)) {
+    public void start() throws IOException {
+        try {
             while(true) {
-                try (Socket socket = listener.accept()){
-                    System.out.println("Recieve connection from sockect: "+socket.getInetAddress()+":"+socket.getPort());
-                    ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-                    Object recv = inputStream.readObject();
-
-                    int result = 0;
-                    if (recv instanceof Request) {
-                        Request request = (Request) recv;
-                        if ("add".equals(request.getMethod())) {
-                            result = calculator.add(request.getA(), request.getB());
-                        }
-                    }
-
-                    ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-                    outputStream.writeObject(Integer.valueOf(result));
-                }
+                // 这里不能使用try with resource语句，因为关闭socket需要等待consumer方，
+                // 多线程时，execute用另一个个线程执行，所以用try with resource会立马关闭socket
+                pool.execute(new Handler(listener.start()));
             }
+        } finally {
+            pool.shutdown();
         }
-
-
     }
 }
