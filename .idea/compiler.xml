@@ -2,11 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="RPC-StepByStep" />
+        <module name="rpc-comsumer" />
+        <module name="rpc-core" />
+        <module name="rpc-provider" />
+        <module name="rpc-service" />
         <module name="rpc-v0" />
       </profile>
     </annotationProcessing>
