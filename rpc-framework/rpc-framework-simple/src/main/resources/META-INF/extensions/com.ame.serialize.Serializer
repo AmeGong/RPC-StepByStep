@@ -1,0 +1,2 @@
+kyro=com.ame.serialize.kyro.KryoSerializer
+protostuff=com.ame.serialize.protostuff.ProtostuffSerializer

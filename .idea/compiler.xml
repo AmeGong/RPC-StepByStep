@@ -7,8 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="example-client" />
+        <module name="example-server" />
+        <module name="hello-service-api" />
         <module name="rpc-comsumer" />
         <module name="rpc-core" />
+        <module name="rpc-framework-common" />
+        <module name="rpc-framework-simple" />
         <module name="rpc-provider" />
         <module name="rpc-service" />
         <module name="rpc-v0" />
