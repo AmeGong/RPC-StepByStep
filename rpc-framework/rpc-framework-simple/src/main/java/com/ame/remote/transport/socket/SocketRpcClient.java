@@ -2,10 +2,11 @@ package com.ame.remote.transport.socket;
 
 import com.ame.entity.RpcServiceProperties;
 import com.ame.exception.RpcException;
-import com.ame.extension.ExtensionLoader;
 import com.ame.registry.ServiceDiscovery;
-import com.ame.remote.transport.RpcRequestTransport;
 import com.ame.remote.dto.RpcRequest;
+import com.ame.remote.transport.RpcRequestTransport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,12 +19,14 @@ import java.net.Socket;
  * Author:   AmeGong
  * Date:     2020/12/30 19:47
  */
+@Component
 public class SocketRpcClient implements RpcRequestTransport {
-    private final ServiceDiscovery serviceDiscovery;
+    @Autowired
+    private ServiceDiscovery serviceDiscovery;
 
     public SocketRpcClient() {
         // initialize the serviceDiscovery
-        serviceDiscovery = ExtensionLoader.getExtensionLoader(ServiceDiscovery.class).getExtension("zk");
+//        serviceDiscovery = ExtensionLoader.getExtensionLoader(ServiceDiscovery.class).getExtension("zk");
     }
     @Override
     public Object sendRequest(RpcRequest rpcRequest) {

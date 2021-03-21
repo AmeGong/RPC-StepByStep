@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
  */
 public class Consumer implements Runnable{
     private int a, b;
-    Calculator remoteCalculater = new RemoteCalculater();
+    private Calculator remoteCalculater = new RemoteCalculater();
     public Consumer(int a, int b) {
         this.a = a;
         this.b = b;

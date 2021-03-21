@@ -1,10 +1,10 @@
 package com.ame.remote.handler;
 
-import com.ame.factory.SingletonFactory;
 import com.ame.provider.ServiceProvider;
-import com.ame.provider.impl.ServiceProviderImpl;
 import com.ame.remote.dto.RpcRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,11 +15,13 @@ import java.lang.reflect.Method;
  * Date:     2021/1/4 14:37
  */
 @Slf4j
+@Component
 public class RpcRequestHandler implements RequestHandler {
-    private final ServiceProvider serviceProvider;
+    @Autowired
+    private  ServiceProvider serviceProvider;
 
     public RpcRequestHandler() {
-        this.serviceProvider = SingletonFactory.getInstance(ServiceProviderImpl.class);
+//        this.serviceProvider = SingletonFactory.getInstance(ServiceProviderImpl.class);
     }
 
     @Override

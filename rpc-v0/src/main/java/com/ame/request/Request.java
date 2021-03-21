@@ -8,11 +8,10 @@ import java.io.Serializable;
  * Date:     2020/12/23 16:22
  */
 public class Request implements Serializable {
-    private static final long serialVersionUID = 7503710091945320739L;
-
-    private String method;
-    private int a;
-    private int b;
+    private static final long serialVersionUID = 7503710091945320739L; 
+    private String method;        // the name of the invoked method
+    private int a;               // the first parameter
+    private int b;              // the first parameter
 
     public String getMethod() {
         return method;

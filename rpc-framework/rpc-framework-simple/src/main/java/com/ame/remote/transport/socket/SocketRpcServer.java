@@ -1,11 +1,10 @@
 package com.ame.remote.transport.socket;
 
 import com.ame.entity.RpcServiceProperties;
-import com.ame.factory.SingletonFactory;
 import com.ame.provider.ServiceProvider;
-import com.ame.provider.impl.ServiceProviderImpl;
 import com.ame.utils.concurrent.threadpool.ThreadPoolFactoryUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -26,11 +25,12 @@ import static com.ame.utils.Consistant.PORT;
 @Component
 public class SocketRpcServer {
     private final ExecutorService threadPool;
-    private final ServiceProvider serviceProvider;
+    @Autowired
+    private  ServiceProvider serviceProvider;
 
     public SocketRpcServer() {
         threadPool = ThreadPoolFactoryUtils.createCustomThreadPoolIfAbsent("socket-server-rpc-pool");
-        serviceProvider = SingletonFactory.getInstance(ServiceProviderImpl.class);
+//        serviceProvider = SingletonFactory.getInstance(ServiceProviderImpl.class);
     }
 
     public void registerService(Object service) {

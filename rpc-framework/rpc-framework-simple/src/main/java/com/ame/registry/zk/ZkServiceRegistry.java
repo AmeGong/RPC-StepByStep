@@ -1,6 +1,5 @@
 package com.ame.registry.zk;
 
-import com.ame.annotation.RpcService;
 import com.ame.registry.ServiceRegistry;
 import com.ame.registry.zk.util.CuratorUtils;
 import org.apache.curator.framework.CuratorFramework;
@@ -13,7 +12,7 @@ import java.net.InetSocketAddress;
  * Author:   AmeGong
  * Date:     2021/1/4 15:32
  */
-//@Component
+@Component
 public class ZkServiceRegistry implements ServiceRegistry {
     @Override
     public void registerService(String rpcServiceName, InetSocketAddress inetSocketAddress) {

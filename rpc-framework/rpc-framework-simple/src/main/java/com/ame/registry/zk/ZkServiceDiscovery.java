@@ -2,7 +2,6 @@ package com.ame.registry.zk;
 
 import com.ame.enums.RpcErrorMessageEnum;
 import com.ame.exception.RpcException;
-import com.ame.extension.ExtensionLoader;
 import com.ame.loadbalance.LoadBalance;
 import com.ame.registry.ServiceDiscovery;
 import com.ame.registry.zk.util.CuratorUtils;
@@ -20,13 +19,13 @@ import java.util.List;
  * Date:     2021/1/4 9:48
  */
 @Slf4j
-//@Component
+@Component
 public class ZkServiceDiscovery implements ServiceDiscovery {
     @Autowired
-    private final LoadBalance loadBalance;
+    private LoadBalance loadBalance;
 
     public ZkServiceDiscovery() {
-        this.loadBalance = ExtensionLoader.getExtensionLoader(LoadBalance.class).getExtension("loadBalance");
+//        this.loadBalance = ExtensionLoader.getExtensionLoader(LoadBalance.class).getExtension("loadBalance");
     }
 
     @Override

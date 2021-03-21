@@ -3,10 +3,7 @@ package com.ame.spring;
 import com.ame.annotation.RpcReference;
 import com.ame.annotation.RpcService;
 import com.ame.entity.RpcServiceProperties;
-import com.ame.extension.ExtensionLoader;
-import com.ame.factory.SingletonFactory;
 import com.ame.provider.ServiceProvider;
-import com.ame.provider.impl.ServiceProviderImpl;
 import com.ame.proxy.RpcClientProxy;
 import com.ame.remote.transport.RpcRequestTransport;
 import lombok.SneakyThrows;
@@ -28,11 +25,12 @@ import java.lang.reflect.Field;
 public class SpringBeanPostProcessor implements BeanPostProcessor {
     @Autowired
     private ServiceProvider serverProvider;
-    private final RpcRequestTransport rpcClient;
+    @Autowired
+    private RpcRequestTransport rpcClient;
 
     public SpringBeanPostProcessor() {
 //        this.serverProvider = SingletonFactory.getInstance(ServiceProviderImpl.class);
-        this.rpcClient = ExtensionLoader.getExtensionLoader(RpcRequestTransport.class).getExtension("socket");
+//        this.rpcClient = ExtensionLoader.getExtensionLoader(RpcRequestTransport.class).getExtension("socket");
     }
 
     @SneakyThrows

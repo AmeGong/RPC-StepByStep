@@ -10,6 +10,5 @@ import com.ame.remote.dto.RpcRequest;
  */
 @SPI
 public interface RpcRequestTransport {
-
     Object sendRequest(RpcRequest rpcRequest);
 }

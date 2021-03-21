@@ -3,10 +3,10 @@ package com.ame.provider.impl;
 import com.ame.entity.RpcServiceProperties;
 import com.ame.enums.RpcErrorMessageEnum;
 import com.ame.exception.RpcException;
-import com.ame.extension.ExtensionLoader;
 import com.ame.provider.ServiceProvider;
 import com.ame.registry.ServiceRegistry;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;
@@ -29,12 +29,13 @@ import static com.ame.utils.Consistant.PORT;
 public class ServiceProviderImpl implements ServiceProvider {
     private final Map<String, Object> serviceMap;
     private final Set<String> registeredService;
-    private final ServiceRegistry serviceRegistry;
+    @Autowired
+    private ServiceRegistry serviceRegistry;
 
     public ServiceProviderImpl() {
         serviceMap = new ConcurrentHashMap<>();
         registeredService = ConcurrentHashMap.newKeySet();
-        serviceRegistry = ExtensionLoader.getExtensionLoader(ServiceRegistry.class).getExtension("zk");
+//        serviceRegistry = ExtensionLoader.getExtensionLoader(ServiceRegistry.class).getExtension("zk");
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.ame.remote.transport.socket;
 
-import com.ame.factory.SingletonFactory;
 import com.ame.remote.dto.RpcRequest;
 import com.ame.remote.dto.RpcResponse;
 import com.ame.remote.handler.RpcRequestHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,11 +19,12 @@ import java.net.Socket;
 @Slf4j
 public class SocketRpcRequestHandlerRunnable implements Runnable {
     private final Socket socket;
-    private final RpcRequestHandler rpcRequestHandler;
+    @Autowired
+    private  RpcRequestHandler rpcRequestHandler;
 
     public SocketRpcRequestHandlerRunnable(Socket socket) {
         this.socket = socket;
-        this.rpcRequestHandler = SingletonFactory.getInstance(RpcRequestHandler.class);
+//        this.rpcRequestHandler = SingletonFactory.getInstance(RpcRequestHandler.class);
     }
 
     @Override

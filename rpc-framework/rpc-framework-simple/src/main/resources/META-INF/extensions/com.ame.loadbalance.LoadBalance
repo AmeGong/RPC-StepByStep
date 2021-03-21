@@ -1,1 +1,0 @@
-loadBalance=com.ame.loadbalance.loadbalancer.ConsistentHashLoadBalance
